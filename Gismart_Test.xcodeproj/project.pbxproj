@@ -7,21 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BFACF647286CF8CD0052352A /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACF646286CF8CD0052352A /* Timer.swift */; };
+		BFACF647286CF8CD0052352A /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACF646286CF8CD0052352A /* TimerView.swift */; };
+		BFACF649286DC63B0052352A /* OfferActivatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACF648286DC63B0052352A /* OfferActivatedView.swift */; };
+		BFACF64C286DD18E0052352A /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACF64B286DD18E0052352A /* Animation.swift */; };
+		BFACF64E286DD9980052352A /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACF64D286DD9980052352A /* TimerManager.swift */; };
 		BFC9565F286CC01C002A5827 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9565E286CC01C002A5827 /* AppDelegate.swift */; };
 		BFC95661286CC01C002A5827 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC95660286CC01C002A5827 /* SceneDelegate.swift */; };
-		BFC95663286CC01C002A5827 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC95662286CC01C002A5827 /* ViewController.swift */; };
+		BFC95663286CC01C002A5827 /* DiscountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC95662286CC01C002A5827 /* DiscountViewController.swift */; };
 		BFC95666286CC01C002A5827 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC95664286CC01C002A5827 /* Main.storyboard */; };
 		BFC95668286CC021002A5827 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFC95667286CC021002A5827 /* Assets.xcassets */; };
 		BFC9566B286CC021002A5827 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC95669286CC021002A5827 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BFACF646286CF8CD0052352A /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		BFACF646286CF8CD0052352A /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		BFACF648286DC63B0052352A /* OfferActivatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferActivatedView.swift; sourceTree = "<group>"; };
+		BFACF64B286DD18E0052352A /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		BFACF64D286DD9980052352A /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		BFC9565B286CC01C002A5827 /* Gismart_Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gismart_Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC9565E286CC01C002A5827 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFC95660286CC01C002A5827 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BFC95662286CC01C002A5827 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
+		BFC95662286CC01C002A5827 /* DiscountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		BFC95665286CC01C002A5827 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BFC95667286CC021002A5827 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFC9566A286CC021002A5827 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -39,6 +45,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BFACF64A286DD17B0052352A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BFACF64B286DD18E0052352A /* Animation.swift */,
+				BFACF64D286DD9980052352A /* TimerManager.swift */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		BFC95652286CC01C002A5827 = {
 			isa = PBXGroup;
 			children = (
@@ -60,8 +75,10 @@
 			children = (
 				BFC9565E286CC01C002A5827 /* AppDelegate.swift */,
 				BFC95660286CC01C002A5827 /* SceneDelegate.swift */,
-				BFC95662286CC01C002A5827 /* ViewController.swift */,
-				BFACF646286CF8CD0052352A /* Timer.swift */,
+				BFC95662286CC01C002A5827 /* DiscountViewController.swift */,
+				BFACF648286DC63B0052352A /* OfferActivatedView.swift */,
+				BFACF646286CF8CD0052352A /* TimerView.swift */,
+				BFACF64A286DD17B0052352A /* Supporting Files */,
 				BFC95664286CC01C002A5827 /* Main.storyboard */,
 				BFC95667286CC021002A5827 /* Assets.xcassets */,
 				BFC95669286CC021002A5827 /* LaunchScreen.storyboard */,
@@ -141,10 +158,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFC95663286CC01C002A5827 /* ViewController.swift in Sources */,
+				BFC95663286CC01C002A5827 /* DiscountViewController.swift in Sources */,
 				BFC9565F286CC01C002A5827 /* AppDelegate.swift in Sources */,
 				BFC95661286CC01C002A5827 /* SceneDelegate.swift in Sources */,
-				BFACF647286CF8CD0052352A /* Timer.swift in Sources */,
+				BFACF649286DC63B0052352A /* OfferActivatedView.swift in Sources */,
+				BFACF64C286DD18E0052352A /* Animation.swift in Sources */,
+				BFACF64E286DD9980052352A /* TimerManager.swift in Sources */,
+				BFACF647286CF8CD0052352A /* TimerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

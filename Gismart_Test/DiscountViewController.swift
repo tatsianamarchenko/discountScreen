@@ -92,10 +92,21 @@ class ViewController: UIViewController {
 		return button
 	}
 
-	//let clock = TimerView()
+	let customAlert = OfferActivatedView()
+
+	@objc func presentVC() {
+		customAlert.showAlert(with: "Great!", message: "sbs", onView: self)
+	}
+
+	@objc func tapped() {
+		customAlert.dismissAlert()
+	}
+
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
+			customAlert.backgroundView.addGestureRecognizer(tapGesture)
 		view.addSubview(musicImage)
 		view.addSubview(saleTitleLable)
 		view.addSubview(salePercentLable)
@@ -109,6 +120,7 @@ class ViewController: UIViewController {
 		view.addSubview(timer)
 		makeConstraints()
 		view.backgroundColor = .black
+		activateButton.addTarget(self, action: #selector(presentVC), for: .touchUpInside)
 	}
 	var timer = TimerView()
 

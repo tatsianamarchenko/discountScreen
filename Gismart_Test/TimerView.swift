@@ -10,13 +10,19 @@ import UIKit
 
 class TimerView: UIView {
 
-	var timer: Timer?
-	private var timerValue = 86400
-
+	var timer: TimerManager?
 	var dayLable: UILabel!
 	var hoursLable: UILabel!
 	var minutesLable: UILabel!
 	var secondsLable: UILabel!
+
+	var dayView: UIView!
+	var hoursView: UIView!
+	var minutesView: UIView!
+	var secondsView: UIView!
+	var firstColon: UIView!
+	var secondColon: UIView!
+	var thirdColon: UIView!
 
 	private	func createView() -> UIView {
 		let view = UIView()
@@ -44,49 +50,6 @@ class TimerView: UIView {
 		return lable
 	}
 
-	func runTimer() {
-		timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
-	}
-
-	@objc func updateTimer() {
-		if timerValue < 1 {
-			timer?.invalidate()
-		} else {
-			timerValue -= 1
-			timeString(time: TimeInterval(timerValue), handler: { [weak self] (days, hours, minutes, seconds) in
-
-				if self?.dayLable.text != days{
-					self?.dayLable.wheelAnimation()
-				}
-				if self?.hoursLable.text != hours{
-					self?.hoursLable.wheelAnimation()
-				}
-				if self?.minutesLable.text != minutes{
-					self?.minutesLable.wheelAnimation()
-				}
-				if self?.secondsLable.text != seconds{
-					self?.secondsLable.wheelAnimation()
-				}
-
-				self?.dayLable.text = days
-				self?.hoursLable.text = hours
-				self?.minutesLable.text = minutes
-				self?.secondsLable.text = seconds
-			})
-		}
-	}
-
-	private func timeString(time:TimeInterval, handler: @escaping (String, String, String, String) -> Void) {
-		let days = Int(time) / 86400
-		let hours = Int(time) / 3600
-		let minutes = Int(time) / 60 % 60
-		let seconds = Int(time) % 60
-		handler(String(format:"%02i", days),
-				String(format:"%02i", hours),
-				String(format:"%02i", minutes),
-				String(format:"%02i", seconds))
-	}
-
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 
@@ -94,15 +57,14 @@ class TimerView: UIView {
 		hoursLable = createLable()
 		minutesLable = createLable()
 		secondsLable = createLable()
-		runTimer()
+		dayView = createView()
+		hoursView = createView()
+		minutesView = createView()
+		secondsView = createView()
+		firstColon = createColonLable()
+		secondColon = createColonLable()
+		thirdColon = createColonLable()
 
-		let dayView = createView()
-		let hoursView = createView()
-		let minutesView = createView()
-		let secondsView = createView()
-		let firstColon = createColonLable()
-		let secondColon = createColonLable()
-		let thirdColon = createColonLable()
 		dayView.addSubview(dayLable)
 		hoursView.addSubview(hoursLable)
 		minutesView.addSubview(minutesLable)
@@ -115,6 +77,20 @@ class TimerView: UIView {
 		addSubview(thirdColon)
 		addSubview(secondsView)
 
+		makeConstraints()
+		timer = TimerManager(timerValue: 86400,
+								 dayLable: dayLable,
+								 hoursLable: hoursLable,
+								 minutesLable: minutesLable,
+								 secondsLable: secondsLable)
+		timer?.runTimer()
+	}
+
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+
+	private func makeConstraints() {
 		NSLayoutConstraint.activate([
 			dayView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 3),
 			dayView.heightAnchor.constraint(equalToConstant: 41),
@@ -176,21 +152,5 @@ class TimerView: UIView {
 			secondsView.heightAnchor.constraint(equalToConstant: 41),
 			secondsView.widthAnchor.constraint(equalToConstant: 62.5)
 		])
-	}
-
-	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-	
-}
-
-extension UILabel {
-	func wheelAnimation() {
-		let animation: CATransition = CATransition()
-		animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
-		animation.type = CATransitionType.push
-		animation.subtype = CATransitionSubtype.fromBottom
-		animation.duration = 0.3
-		layer.add(animation, forKey: CATransitionType.push.rawValue)
 	}
 }
