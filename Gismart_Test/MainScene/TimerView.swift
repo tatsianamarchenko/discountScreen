@@ -10,19 +10,19 @@ import UIKit
 
 class TimerView: UIView {
 
-	var timer: TimerManager?
-	var dayLable: UILabel!
-	var hoursLable: UILabel!
-	var minutesLable: UILabel!
-	var secondsLable: UILabel!
+	private var timer: TimerManager?
+	private var dayLable: UILabel!
+	private var hoursLable: UILabel!
+	private var minutesLable: UILabel!
+	private var secondsLable: UILabel!
 
-	var dayView: UIView!
-	var hoursView: UIView!
-	var minutesView: UIView!
-	var secondsView: UIView!
-	var firstColon: UIView!
-	var secondColon: UIView!
-	var thirdColon: UIView!
+	private var dayView: UIView!
+	private var hoursView: UIView!
+	private var minutesView: UIView!
+	private var secondsView: UIView!
+	private var firstColon: UIView!
+	private var secondColon: UIView!
+	private var thirdColon: UIView!
 
 	private	func createView() -> UIView {
 		let view = UIView()
@@ -79,15 +79,36 @@ class TimerView: UIView {
 
 		makeConstraints()
 		timer = TimerManager(timerValue: 86400,
-								 dayLable: dayLable,
-								 hoursLable: hoursLable,
-								 minutesLable: minutesLable,
-								 secondsLable: secondsLable)
+							 dayLable: dayLable,
+							 hoursLable: hoursLable,
+							 minutesLable: minutesLable,
+							 secondsLable: secondsLable)
 		timer?.runTimer()
 	}
 
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+
+	func dateToTransfer(complition: @escaping(String, String, String)->Void) {
+		guard let hours = hoursLable.text else {
+			return
+		}
+		var houseLeft = "\(hours) :"
+		guard let minutes = minutesLable.text else {
+			return
+		}
+		var minutesLeft = "\(minutes) :"
+		guard let secondsLeft = secondsLable.text else {
+			return
+		}
+		if houseLeft == "00 :" {
+			houseLeft = ""
+		}
+		if minutesLeft == "00 :" {
+			minutesLeft = ""
+		}
+		complition(houseLeft, minutesLeft, secondsLeft)
 	}
 
 	private func makeConstraints() {

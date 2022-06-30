@@ -10,20 +10,23 @@ import UIKit
 
 class OfferActivatedView: UIView {
 
-	 let backgroundView: UIView = {
+	var backgroundView: UIView = {
 		var backgroundView = UIView()
 		backgroundView.backgroundColor = .black
 		backgroundView.alpha = 0
 		return backgroundView
 	}()
 
-	private let alertView: UIView = {
+	private var alertView: UIView = {
 		var alert = UIView()
 		alert.backgroundColor = #colorLiteral(red: 0.002419039607, green: 0.05299315602, blue: 0.3073753715, alpha: 1)
 		alert.layer.masksToBounds = true
 		alert.layer.cornerRadius = 12
 		return alert
 	}()
+
+	var titleLable: UILabel!
+	var messageLable: UILabel!
 
 	private var myTargetView: UIView?
 	
@@ -43,7 +46,7 @@ class OfferActivatedView: UIView {
 								 width: targetView.frame.size.width/3,
 								 height: targetView.frame.size.height/3)
 
-		let titleLable = UILabel(frame: CGRect(x: 0,
+		 titleLable = UILabel(frame: CGRect(x: 0,
 											   y: 0,
 											   width: alertView.frame.size.width,
 											   height: 50))
@@ -55,7 +58,7 @@ class OfferActivatedView: UIView {
 		titleLable.createShadow(shadowBlurRadius: 15, shadowColor: .blue)
 		alertView.addSubview(titleLable)
 
-		let messageLable = UILabel(frame: CGRect(x: 0,
+		 messageLable = UILabel(frame: CGRect(x: 0,
 												 y: 80,
 												 width: alertView.frame.size.width,
 												 height: 50))
@@ -98,10 +101,11 @@ class OfferActivatedView: UIView {
 					if done {
 						self.alertView.removeFromSuperview()
 						self.backgroundView.removeFromSuperview()
+						self.titleLable.text = ""
+						self.messageLable.text = ""
 					}
 				}
 			}
 		})
 	}
-
 }

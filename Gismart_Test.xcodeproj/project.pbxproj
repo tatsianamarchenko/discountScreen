@@ -54,6 +54,15 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		BFAD9E79286E2C210046B15C /* MainScene */ = {
+			isa = PBXGroup;
+			children = (
+				BFC95662286CC01C002A5827 /* DiscountViewController.swift */,
+				BFACF646286CF8CD0052352A /* TimerView.swift */,
+			);
+			path = MainScene;
+			sourceTree = "<group>";
+		};
 		BFC95652286CC01C002A5827 = {
 			isa = PBXGroup;
 			children = (
@@ -75,9 +84,8 @@
 			children = (
 				BFC9565E286CC01C002A5827 /* AppDelegate.swift */,
 				BFC95660286CC01C002A5827 /* SceneDelegate.swift */,
-				BFC95662286CC01C002A5827 /* DiscountViewController.swift */,
 				BFACF648286DC63B0052352A /* OfferActivatedView.swift */,
-				BFACF646286CF8CD0052352A /* TimerView.swift */,
+				BFAD9E79286E2C210046B15C /* MainScene */,
 				BFACF64A286DD17B0052352A /* Supporting Files */,
 				BFC95664286CC01C002A5827 /* Main.storyboard */,
 				BFC95667286CC021002A5827 /* Assets.xcassets */,

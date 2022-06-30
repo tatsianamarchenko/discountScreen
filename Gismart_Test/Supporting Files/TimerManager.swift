@@ -13,10 +13,10 @@ class TimerManager {
 	private var timer: Timer?
 	private var timerValue: Int
 
-	var dayLable: UILabel?
-	var hoursLable: UILabel?
-	var minutesLable: UILabel?
-	var secondsLable: UILabel?
+	private var dayLable: UILabel?
+	private var hoursLable: UILabel?
+	private var minutesLable: UILabel?
+	private var secondsLable: UILabel?
 
 	init(timerValue: Int, dayLable: UILabel, hoursLable: UILabel, minutesLable: UILabel, secondsLable: UILabel) {
 		self.timerValue = timerValue

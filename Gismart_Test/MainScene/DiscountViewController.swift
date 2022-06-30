@@ -95,7 +95,9 @@ class ViewController: UIViewController {
 	let customAlert = OfferActivatedView()
 
 	@objc func presentVC() {
-		customAlert.showAlert(with: "Great!", message: "sbs", onView: self)
+		timer.dateToTransfer { houseLeft, minutesLeft, secondsLeft in
+			self.customAlert.showAlert(with: "Great!", message: "Offer activated: \(houseLeft)\(minutesLeft)\(secondsLeft)", onView: self)
+		}
 	}
 
 	@objc func tapped() {
