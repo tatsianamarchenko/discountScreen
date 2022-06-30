@@ -39,6 +39,7 @@ class TimerView: UIView {
 		let lable = UILabel()
 		lable.textColor = .white
 		lable.textAlignment = .center
+
 		lable.translatesAutoresizingMaskIntoConstraints = false
 		return lable
 	}
@@ -53,6 +54,20 @@ class TimerView: UIView {
 		} else {
 			timerValue -= 1
 			timeString(time: TimeInterval(timerValue), handler: { [weak self] (days, hours, minutes, seconds) in
+
+				if self?.dayLable.text != days{
+					self?.dayLable.wheelAnimation()
+				}
+				if self?.hoursLable.text != hours{
+					self?.hoursLable.wheelAnimation()
+				}
+				if self?.minutesLable.text != minutes{
+					self?.minutesLable.wheelAnimation()
+				}
+				if self?.secondsLable.text != seconds{
+					self?.secondsLable.wheelAnimation()
+				}
+
 				self?.dayLable.text = days
 				self?.hoursLable.text = hours
 				self?.minutesLable.text = minutes
@@ -165,5 +180,17 @@ class TimerView: UIView {
 
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+	
+}
+
+extension UILabel {
+	func wheelAnimation() {
+		let animation: CATransition = CATransition()
+		animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+		animation.type = CATransitionType.push
+		animation.subtype = CATransitionSubtype.fromBottom
+		animation.duration = 0.3
+		layer.add(animation, forKey: CATransitionType.push.rawValue)
 	}
 }
