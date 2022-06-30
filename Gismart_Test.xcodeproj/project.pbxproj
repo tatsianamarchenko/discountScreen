@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		BFACF647286CF8CD0052352A /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACF646286CF8CD0052352A /* TimerView.swift */; };
 		BFACF649286DC63B0052352A /* OfferActivatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACF648286DC63B0052352A /* OfferActivatedView.swift */; };
-		BFACF64C286DD18E0052352A /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACF64B286DD18E0052352A /* Animation.swift */; };
+		BFACF64C286DD18E0052352A /* LabelExtansions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACF64B286DD18E0052352A /* LabelExtansions.swift */; };
 		BFACF64E286DD9980052352A /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACF64D286DD9980052352A /* TimerManager.swift */; };
 		BFC9565F286CC01C002A5827 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9565E286CC01C002A5827 /* AppDelegate.swift */; };
 		BFC95661286CC01C002A5827 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC95660286CC01C002A5827 /* SceneDelegate.swift */; };
@@ -22,7 +22,7 @@
 /* Begin PBXFileReference section */
 		BFACF646286CF8CD0052352A /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		BFACF648286DC63B0052352A /* OfferActivatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferActivatedView.swift; sourceTree = "<group>"; };
-		BFACF64B286DD18E0052352A /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		BFACF64B286DD18E0052352A /* LabelExtansions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtansions.swift; sourceTree = "<group>"; };
 		BFACF64D286DD9980052352A /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		BFC9565B286CC01C002A5827 /* Gismart_Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gismart_Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC9565E286CC01C002A5827 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 		BFACF64A286DD17B0052352A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				BFACF64B286DD18E0052352A /* Animation.swift */,
+				BFACF64B286DD18E0052352A /* LabelExtansions.swift */,
 				BFACF64D286DD9980052352A /* TimerManager.swift */,
 			);
 			path = "Supporting Files";
@@ -162,7 +162,7 @@
 				BFC9565F286CC01C002A5827 /* AppDelegate.swift in Sources */,
 				BFC95661286CC01C002A5827 /* SceneDelegate.swift in Sources */,
 				BFACF649286DC63B0052352A /* OfferActivatedView.swift in Sources */,
-				BFACF64C286DD18E0052352A /* Animation.swift in Sources */,
+				BFACF64C286DD18E0052352A /* LabelExtansions.swift in Sources */,
 				BFACF64E286DD9980052352A /* TimerManager.swift in Sources */,
 				BFACF647286CF8CD0052352A /* TimerView.swift in Sources */,
 			);

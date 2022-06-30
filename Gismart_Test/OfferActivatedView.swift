@@ -51,6 +51,8 @@ class OfferActivatedView: UIView {
 		titleLable.text = title
 		titleLable.textColor = .white
 		titleLable.textAlignment = .center
+		titleLable.font = .systemFont(ofSize: 35, weight: .bold)
+		titleLable.createShadow(shadowBlurRadius: 15, shadowColor: .blue)
 		alertView.addSubview(titleLable)
 
 		let messageLable = UILabel(frame: CGRect(x: 0,
