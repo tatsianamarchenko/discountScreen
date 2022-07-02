@@ -11,10 +11,12 @@
 		BFACF649286DC63B0052352A /* OfferActivatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACF648286DC63B0052352A /* OfferActivatedView.swift */; };
 		BFACF64C286DD18E0052352A /* LabelExtansions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACF64B286DD18E0052352A /* LabelExtansions.swift */; };
 		BFACF64E286DD9980052352A /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACF64D286DD9980052352A /* TimerManager.swift */; };
+		BFB11B81287053AC00E73319 /* DevicesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB11B80287053AC00E73319 /* DevicesExtension.swift */; };
+		BFBFE5FB286F9FF500CC8EAB /* ButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBFE5FA286F9FF500CC8EAB /* ButtonExtensions.swift */; };
+		BFC2CFFF2870619000775699 /* other.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC2CFFE2870619000775699 /* other.swift */; };
 		BFC9565F286CC01C002A5827 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9565E286CC01C002A5827 /* AppDelegate.swift */; };
 		BFC95661286CC01C002A5827 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC95660286CC01C002A5827 /* SceneDelegate.swift */; };
 		BFC95663286CC01C002A5827 /* DiscountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC95662286CC01C002A5827 /* DiscountViewController.swift */; };
-		BFC95666286CC01C002A5827 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC95664286CC01C002A5827 /* Main.storyboard */; };
 		BFC95668286CC021002A5827 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFC95667286CC021002A5827 /* Assets.xcassets */; };
 		BFC9566B286CC021002A5827 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC95669286CC021002A5827 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -24,11 +26,13 @@
 		BFACF648286DC63B0052352A /* OfferActivatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferActivatedView.swift; sourceTree = "<group>"; };
 		BFACF64B286DD18E0052352A /* LabelExtansions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtansions.swift; sourceTree = "<group>"; };
 		BFACF64D286DD9980052352A /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
+		BFB11B80287053AC00E73319 /* DevicesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesExtension.swift; sourceTree = "<group>"; };
+		BFBFE5FA286F9FF500CC8EAB /* ButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtensions.swift; sourceTree = "<group>"; };
+		BFC2CFFE2870619000775699 /* other.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = other.swift; sourceTree = "<group>"; };
 		BFC9565B286CC01C002A5827 /* Gismart_Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gismart_Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC9565E286CC01C002A5827 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFC95660286CC01C002A5827 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BFC95662286CC01C002A5827 /* DiscountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		BFC95665286CC01C002A5827 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BFC95667286CC021002A5827 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFC9566A286CC021002A5827 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFC9566C286CC021002A5827 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -48,8 +52,12 @@
 		BFACF64A286DD17B0052352A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BFACF646286CF8CD0052352A /* TimerView.swift */,
 				BFACF64B286DD18E0052352A /* LabelExtansions.swift */,
 				BFACF64D286DD9980052352A /* TimerManager.swift */,
+				BFBFE5FA286F9FF500CC8EAB /* ButtonExtensions.swift */,
+				BFB11B80287053AC00E73319 /* DevicesExtension.swift */,
+				BFC2CFFE2870619000775699 /* other.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -58,7 +66,6 @@
 			isa = PBXGroup;
 			children = (
 				BFC95662286CC01C002A5827 /* DiscountViewController.swift */,
-				BFACF646286CF8CD0052352A /* TimerView.swift */,
 			);
 			path = MainScene;
 			sourceTree = "<group>";
@@ -87,7 +94,6 @@
 				BFACF648286DC63B0052352A /* OfferActivatedView.swift */,
 				BFAD9E79286E2C210046B15C /* MainScene */,
 				BFACF64A286DD17B0052352A /* Supporting Files */,
-				BFC95664286CC01C002A5827 /* Main.storyboard */,
 				BFC95667286CC021002A5827 /* Assets.xcassets */,
 				BFC95669286CC021002A5827 /* LaunchScreen.storyboard */,
 				BFC9566C286CC021002A5827 /* Info.plist */,
@@ -155,7 +161,6 @@
 			files = (
 				BFC9566B286CC021002A5827 /* LaunchScreen.storyboard in Resources */,
 				BFC95668286CC021002A5827 /* Assets.xcassets in Resources */,
-				BFC95666286CC01C002A5827 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,7 +176,10 @@
 				BFC95661286CC01C002A5827 /* SceneDelegate.swift in Sources */,
 				BFACF649286DC63B0052352A /* OfferActivatedView.swift in Sources */,
 				BFACF64C286DD18E0052352A /* LabelExtansions.swift in Sources */,
+				BFB11B81287053AC00E73319 /* DevicesExtension.swift in Sources */,
+				BFBFE5FB286F9FF500CC8EAB /* ButtonExtensions.swift in Sources */,
 				BFACF64E286DD9980052352A /* TimerManager.swift in Sources */,
+				BFC2CFFF2870619000775699 /* other.swift in Sources */,
 				BFACF647286CF8CD0052352A /* TimerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -179,14 +187,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		BFC95664286CC01C002A5827 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BFC95665286CC01C002A5827 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BFC95669286CC021002A5827 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -248,7 +248,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -302,7 +302,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -324,10 +324,10 @@
 				INFOPLIST_FILE = Gismart_Test/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationLandscapeLeft";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationLandscapeLeft";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -354,10 +354,10 @@
 				INFOPLIST_FILE = Gismart_Test/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationLandscapeLeft";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationLandscapeLeft";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

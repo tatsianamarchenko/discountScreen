@@ -49,23 +49,24 @@ class OfferActivatedView: UIView {
 		 titleLable = UILabel(frame: CGRect(x: 0,
 											   y: 0,
 											   width: alertView.frame.size.width,
-											   height: 50))
+											   height: alertView.frame.size.height/2+30))
 
 		titleLable.text = title
 		titleLable.textColor = .white
 		titleLable.textAlignment = .center
 		titleLable.font = .systemFont(ofSize: 35, weight: .bold)
-		titleLable.createShadow(shadowBlurRadius: 15, shadowColor: .blue)
+		titleLable.createShadow(shadowBlurRadius: 20, shadowColor: .blue)
 		alertView.addSubview(titleLable)
 
 		 messageLable = UILabel(frame: CGRect(x: 0,
 												 y: 80,
 												 width: alertView.frame.size.width,
-												 height: 50))
+												 height: alertView.frame.size.height/2-20))
 
 		messageLable.numberOfLines = 0
 		messageLable.text = message
 		messageLable.textColor = .white
+		messageLable.font = .systemFont(ofSize: 20, weight: .semibold)
 		messageLable.textAlignment = .center
 		alertView.addSubview(messageLable)
 
