@@ -10,11 +10,10 @@ import UIKit
 
 class TimerView: UIView {
 
-	private var timer: TimerManager?
-	private var dayLable: UILabel!
-	private var hoursLable: UILabel!
-	private var minutesLable: UILabel!
-	private var secondsLable: UILabel!
+	var dayLable: UILabel!
+	var hoursLable: UILabel!
+	var minutesLable: UILabel!
+	var secondsLable: UILabel!
 
 	private var dayView: UIView!
 	private var hoursView: UIView!
@@ -24,31 +23,9 @@ class TimerView: UIView {
 	private var secondColon: UIView!
 	private var thirdColon: UIView!
 
-	private	func createView() -> UIView {
-		let view = UIView()
-		view.translatesAutoresizingMaskIntoConstraints = false
-		view.backgroundColor = #colorLiteral(red: 0.1686274707, green: 0.1686274707, blue: 0.1686274707, alpha: 1)
-		view.layer.cornerRadius = 12
-		return view
-	}
-
-	private func createColonLable () -> UILabel {
-		let lable = UILabel()
-		lable.text = ":"
-		lable.textColor = .white
-		lable.textAlignment = .center
-		lable.translatesAutoresizingMaskIntoConstraints = false
-		return lable
-	}
-
-	private	func createLable() -> UILabel {
-		let lable = UILabel()
-		lable.textColor = .white
-		lable.textAlignment = .center
-
-		lable.translatesAutoresizingMaskIntoConstraints = false
-		return lable
-	}
+	private var compactConstraints: [NSLayoutConstraint] = []
+	private var regularConstraints: [NSLayoutConstraint] = []
+	private var sharedConstraints: [NSLayoutConstraint] = []
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -69,65 +46,51 @@ class TimerView: UIView {
 		hoursView.addSubview(hoursLable)
 		minutesView.addSubview(minutesLable)
 		secondsView.addSubview(secondsLable)
-		addSubview(viewContainer)
-		viewContainer.addSubview(dayView)
-		viewContainer.addSubview(firstColon)
-		viewContainer.addSubview(hoursView)
-		viewContainer.addSubview(secondColon)
-		viewContainer.addSubview(minutesView)
-		viewContainer.addSubview(thirdColon)
-		viewContainer.addSubview(secondsView)
+		addSubview(dayView)
+		addSubview(firstColon)
+		addSubview(hoursView)
+		addSubview(secondColon)
+		addSubview(minutesView)
+		addSubview(thirdColon)
+		addSubview(secondsView)
 
-		//			makeConstraints()
 		setupConstraints()
 
 		NSLayoutConstraint.activate(sharedConstraints)
 		layoutTrait(traitCollection: UIScreen.main.traitCollection)
-
-		timer = TimerManager(timerValue: 86400,
-							 dayLable: dayLable,
-							 hoursLable: hoursLable,
-							 minutesLable: minutesLable,
-							 secondsLable: secondsLable)
-		timer?.runTimer()
 	}
-
-	private lazy var viewContainer: UIView = {
-		let view = UIView()
-		view.translatesAutoresizingMaskIntoConstraints = false
-		return view
-	}()
 
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	func dateToTransfer(complition: @escaping(String, String, String)->Void) {
-		guard let hours = hoursLable.text else {
-			return
-		}
-		var houseLeft = "\(hours):"
-		guard let minutes = minutesLable.text else {
-			return
-		}
-		var minutesLeft = "\(minutes):"
-		guard let secondsLeft = secondsLable.text else {
-			return
-		}
-		if houseLeft == "00:" {
-			houseLeft = ""
-		}
-		if minutesLeft == "00:" {
-			minutesLeft = ""
-		}
-		complition(houseLeft, minutesLeft, secondsLeft)
+	private func createView() -> UIView {
+		let view = UIView()
+		view.translatesAutoresizingMaskIntoConstraints = false
+		view.backgroundColor = #colorLiteral(red: 0.1686274707, green: 0.1686274707, blue: 0.1686274707, alpha: 1)
+		view.layer.cornerRadius = 12
+		return view
 	}
 
-	private var compactConstraints: [NSLayoutConstraint] = []
-	private var regularConstraints: [NSLayoutConstraint] = []
-	private var sharedConstraints: [NSLayoutConstraint] = []
+	private func createColonLable () -> UILabel {
+		let lable = UILabel()
+		lable.text = ":"
+		lable.textColor = .white
+		lable.textAlignment = .center
+		lable.translatesAutoresizingMaskIntoConstraints = false
+		return lable
+	}
 
-	func setupConstraints() {
+	private func createLable() -> UILabel {
+		let lable = UILabel()
+		lable.textColor = .white
+		lable.textAlignment = .center
+
+		lable.translatesAutoresizingMaskIntoConstraints = false
+		return lable
+	}
+
+	private func setupConstraints() {
 		sharedConstraints.append(contentsOf: [
 			dayView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 3),
 			dayLable.centerXAnchor.constraint(equalTo: dayView.centerXAnchor),
@@ -179,7 +142,7 @@ class TimerView: UIView {
 		])
 	}
 
-	func layoutTrait(traitCollection:UITraitCollection) {
+	private func layoutTrait(traitCollection:UITraitCollection) {
 		if (!sharedConstraints[0].isActive) {
 			NSLayoutConstraint.activate(sharedConstraints)
 		}
@@ -197,53 +160,8 @@ class TimerView: UIView {
 	}
 
 	override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-
 		super.traitCollectionDidChange(previousTraitCollection)
-
 		layoutTrait(traitCollection: traitCollection)
 	}
-	
-	//		private func makeConstraints() {
-	//			NSLayoutConstraint.activate([
-	//				dayView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 3),
-	//				dayView.heightAnchor.constraint(equalToConstant: 41),
-	//				dayView.widthAnchor.constraint(equalToConstant: 62.5),
-	//
-	//				dayLable.centerXAnchor.constraint(equalTo: dayView.centerXAnchor),
-	//				dayLable.centerYAnchor.constraint(equalTo: dayView.centerYAnchor),
-	//
-	//				hoursLable.centerXAnchor.constraint(equalTo: hoursView.centerXAnchor),
-	//				hoursLable.centerYAnchor.constraint(equalTo: hoursView.centerYAnchor),
-	//
-	//				minutesLable.centerXAnchor.constraint(equalTo: minutesView.centerXAnchor),
-	//				minutesLable.centerYAnchor.constraint(equalTo: minutesView.centerYAnchor),
-	//
-	//				secondsLable.centerXAnchor.constraint(equalTo: secondsView.centerXAnchor),
-	//				secondsLable.centerYAnchor.constraint(equalTo: secondsView.centerYAnchor),
-	//
-	//				firstColon.leadingAnchor.constraint(equalTo: dayView.trailingAnchor, constant: 3),
-	//				firstColon.heightAnchor.constraint(equalToConstant: 41),
-	//				firstColon.widthAnchor.constraint(equalToConstant: 3),
-	//
-	//				hoursView.leadingAnchor.constraint(equalTo: firstColon.trailingAnchor, constant: 3),
-	//				hoursView.heightAnchor.constraint(equalToConstant: 41),
-	//				hoursView.widthAnchor.constraint(equalToConstant: 62.5),
-	//
-	//				secondColon.leadingAnchor.constraint(equalTo: hoursView.trailingAnchor, constant: 3),
-	//				secondColon.heightAnchor.constraint(equalToConstant: 41),
-	//				secondColon.widthAnchor.constraint(equalToConstant: 3),
-	//
-	//				minutesView.leadingAnchor.constraint(equalTo: secondColon.trailingAnchor, constant: 3),
-	//				minutesView.heightAnchor.constraint(equalToConstant: 41),
-	//				minutesView.widthAnchor.constraint(equalToConstant: 62.5),
-	//
-	//				thirdColon.leadingAnchor.constraint(equalTo: minutesView.trailingAnchor, constant: 3),
-	//				thirdColon.heightAnchor.constraint(equalToConstant: 41),
-	//				thirdColon.widthAnchor.constraint(equalToConstant: 3),
-	//
-	//				secondsView.leadingAnchor.constraint(equalTo: thirdColon.trailingAnchor, constant: 3),
-	//				secondsView.heightAnchor.constraint(equalToConstant: 41),
-	//				secondsView.widthAnchor.constraint(equalToConstant: 62.5)
-	//			])
-	//		}
+
 }

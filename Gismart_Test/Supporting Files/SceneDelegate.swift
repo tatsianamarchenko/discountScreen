@@ -8,17 +8,28 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
 	var window: UIWindow?
-
 
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
-		 guard let windowScene = (scene as? UIWindowScene) else { return }
-				 window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-				 window?.windowScene = windowScene
-				 window?.rootViewController = DiscountViewController()
-				 window?.makeKeyAndVisible()
+
+		guard let windowScene = (scene as? UIWindowScene) else { return }
+		window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+		window?.windowScene = windowScene
+		let navViewController = UINavigationController()
+		let builder = MainBuilder()
+		let router = Router(navigationController: navViewController, builder: builder)
+		router.initialViewController()
+		window?.rootViewController = navViewController
+		window?.makeKeyAndVisible()
+
+
+		
+//		guard let windowScene = (scene as? UIWindowScene) else { return }
+//		window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+//		window?.windowScene = windowScene
+//		window?.rootViewController = DiscountView()
+//		window?.makeKeyAndVisible()
 	}
 	func sceneDidDisconnect(_ scene: UIScene) {
 		// Called as the scene is being released by the system.
@@ -49,9 +60,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	}
 
 
-		func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) ->
- 	UIInterfaceOrientationMask {
- 		return .landscape
- 	}
+	func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+		return .landscape
+	}
+	
 }
 

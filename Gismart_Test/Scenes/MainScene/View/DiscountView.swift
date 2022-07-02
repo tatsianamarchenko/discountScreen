@@ -7,7 +7,14 @@
 
 import UIKit
 
-class DiscountViewController: UIViewController {
+protocol DiscountViewProtocol: UIViewController {
+	func showPopupScreen()
+}
+
+class DiscountView: UIViewController, DiscountViewProtocol {
+
+	var presenter: DiscountPresenterProtocol?
+	let timer = TimerView()
 
 	lazy private var musicImage: UIImageView = {
 		let image =	UIImage(named: "music")!
@@ -68,14 +75,13 @@ class DiscountViewController: UIViewController {
 		var button = ActualGradientButton()
 		button.setTitle("ACTIVATE OFFER", for: .normal)
 		button.titleLabel?.font = .systemFont(ofSize: 15, weight: .semibold)
+		button.addTarget(self, action: #selector(showPopupScreen), for: .touchUpInside)
 		button.translatesAutoresizingMaskIntoConstraints = false
 		button.layer.cornerRadius = 12
-
 		button.layer.shadowColor = UIColor.systemPink.cgColor
 		button.layer.shadowRadius = 30
 		button.layer.shadowOpacity = 0.8
 		button.layer.masksToBounds = false
-
 		return button
 	}()
 
@@ -91,6 +97,12 @@ class DiscountViewController: UIViewController {
 	lazy private var restoreButton = createButtomButtons(text: "Restore")
 	lazy private var termsButton = createButtomButtons(text: "Terms")
 
+	//let customAlert = OfferActivatedView()
+
+	private var compactConstraints: [NSLayoutConstraint] = []
+	private var regularConstraints: [NSLayoutConstraint] = []
+	private var sharedConstraints: [NSLayoutConstraint] = []
+
 	private func createButtomButtons(text: String) -> UIButton {
 		let button = UIButton()
 		button.setTitle(text, for: .normal)
@@ -99,27 +111,6 @@ class DiscountViewController: UIViewController {
 		button.translatesAutoresizingMaskIntoConstraints = false
 		return button
 	}
-
-	let customAlert = OfferActivatedView()
-
-	var timer = TimerView()
-
-	@objc func presentVC() {
-		timer.dateToTransfer { houseLeft, minutesLeft, secondsLeft in
-			self.customAlert.showAlert(with: "Great!", message: "Offer activated: \(houseLeft)\(minutesLeft)\(secondsLeft)", onView: self)
-		}
-	}
-
-	@objc func tapped() {
-		customAlert.dismissAlert()
-	}
-
-
-	private lazy var viewContainer: UIView = {
-		let view = UIView()
-		view.translatesAutoresizingMaskIntoConstraints = false
-		return view
-	}()
 
 	private func setFonts() {
 		saleTitleLable.font = .systemFont(ofSize: 35, weight: .semibold)
@@ -132,40 +123,26 @@ class DiscountViewController: UIViewController {
 		termsButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .regular)
 	}
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
-		customAlert.backgroundView.addGestureRecognizer(tapGesture)
-		timer.translatesAutoresizingMaskIntoConstraints = false
-		view.addSubview(viewContainer)
-
-		viewContainer.addSubview(musicImage)
-		viewContainer.addSubview(saleTitleLable)
-		viewContainer.addSubview(salePercentLable)
-		viewContainer.addSubview(forLable)
-		viewContainer.addSubview(numberOfSongsLable)
-		viewContainer.addSubview(activateButton)
-		viewContainer.addSubview(privacyButton)
-		viewContainer.addSubview(restoreButton)
-		viewContainer.addSubview(termsButton)
-		viewContainer.addSubview(XButton)
-		viewContainer.addSubview(timer)
-
-		setupConstraints()
-		NSLayoutConstraint.activate(sharedConstraints)
-		layoutTrait(traitCollection: UIScreen.main.traitCollection)
-
-		//makeConstraints()
-		view.backgroundColor = .black
-		activateButton.addTarget(self, action: #selector(presentVC), for: .touchUpInside)
+	private func layoutTrait(traitCollection:UITraitCollection) {
+		if (!sharedConstraints[0].isActive) {
+			NSLayoutConstraint.activate(sharedConstraints)
+		}
+		if traitCollection.horizontalSizeClass == .compact || traitCollection.verticalSizeClass == .compact {
+			if regularConstraints.count > 0 && regularConstraints[0].isActive {
+				NSLayoutConstraint.deactivate(regularConstraints)
+			}
+			NSLayoutConstraint.activate(compactConstraints)
+		}
+		else {
+			if compactConstraints.count > 0 && compactConstraints[0].isActive {
+				NSLayoutConstraint.deactivate(compactConstraints)
+			}
+			setFonts()
+			NSLayoutConstraint.activate(regularConstraints)
+		}
 	}
 
-	private var compactConstraints: [NSLayoutConstraint] = []
-	private var regularConstraints: [NSLayoutConstraint] = []
-	private var sharedConstraints: [NSLayoutConstraint] = []
-
 	private func setupConstraints() {
-		print(UIDevice.current.name)
 		switch UIDevice.current.name {
 		case Devices.iPhoneSE1.rawValue:
 			compactConstraints.append(contentsOf: [
@@ -244,10 +221,6 @@ class DiscountViewController: UIViewController {
 		}
 
 		sharedConstraints.append(contentsOf: [
-			viewContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-			viewContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15),
-			viewContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-			viewContainer.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
 
 			XButton.topAnchor.constraint(equalTo: view.topAnchor),
 			XButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
@@ -297,25 +270,37 @@ class DiscountViewController: UIViewController {
 		])
 	}
 
-	private func layoutTrait(traitCollection:UITraitCollection) {
-		if (!sharedConstraints[0].isActive) {
-			NSLayoutConstraint.activate(sharedConstraints)
-		}
-		//for iphones
-		if traitCollection.horizontalSizeClass == .compact || traitCollection.verticalSizeClass == .compact {
-			if regularConstraints.count > 0 && regularConstraints[0].isActive {
-				NSLayoutConstraint.deactivate(regularConstraints)
-			}
-			NSLayoutConstraint.activate(compactConstraints)
-		}
-		else {
-			// for Ipads
-			if compactConstraints.count > 0 && compactConstraints[0].isActive {
-				NSLayoutConstraint.deactivate(compactConstraints)
-			}
-			setFonts()
-			NSLayoutConstraint.activate(regularConstraints)
-		}
+	@objc func showPopupScreen() {
+		presenter?.showActivationTime()
+	}
+
+//	@objc func tapped() {
+//		customAlert.dismissAlert()
+//	}
+
+	override func viewDidLoad() {
+		super.viewDidLoad()
+
+//		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
+//		customAlert.backgroundView.addGestureRecognizer(tapGesture)
+		timer.translatesAutoresizingMaskIntoConstraints = false
+		view.backgroundColor = .black
+
+		view.addSubview(musicImage)
+		view.addSubview(saleTitleLable)
+		view.addSubview(salePercentLable)
+		view.addSubview(forLable)
+		view.addSubview(numberOfSongsLable)
+		view.addSubview(activateButton)
+		view.addSubview(privacyButton)
+		view.addSubview(restoreButton)
+		view.addSubview(termsButton)
+		view.addSubview(XButton)
+		view.addSubview(timer)
+
+		setupConstraints()
+		NSLayoutConstraint.activate(sharedConstraints)
+		layoutTrait(traitCollection: UIScreen.main.traitCollection)
 	}
 
 	override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
