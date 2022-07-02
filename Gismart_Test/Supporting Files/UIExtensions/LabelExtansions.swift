@@ -18,14 +18,14 @@ extension UILabel {
 		layer.add(animation, forKey: CATransitionType.push.rawValue)
 	}
 
-	 func createShadow(shadowBlurRadius: CGFloat, shadowColor: UIColor) {
-		 let shadow = NSShadow()
-		 shadow.shadowColor = shadowColor
-		 shadow.shadowBlurRadius = shadowBlurRadius
-		 let attrs: [NSAttributedString.Key: Any] = [
-			 .shadow: shadow
-		 ]
-		 let attributedText = NSAttributedString(string: text ?? "", attributes: attrs)
-		 self.attributedText = attributedText
-	 }
+	func createShadow(shadowBlurRadius: CGFloat, shadowColor: UIColor) {
+		let shadow = NSShadow()
+		shadow.shadowColor = shadowColor
+		shadow.shadowBlurRadius = shadowBlurRadius
+		let attrs: [NSAttributedString.Key: Any] = [
+			.shadow: shadow
+		]
+		let attributedText = NSAttributedString(string: text ?? "", attributes: attrs)
+		self.attributedText = attributedText
+	}
 }

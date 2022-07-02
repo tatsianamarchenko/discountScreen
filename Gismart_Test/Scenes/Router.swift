@@ -21,12 +21,12 @@ protocol RouterProtocol: RouterMain {
 class Router: RouterProtocol {
 	var navigationController: UINavigationController?
 	var builder: Builder?
-
+	
 	init(navigationController: UINavigationController, builder: Builder) {
 		self.navigationController = navigationController
 		self.builder = builder
 	}
-
+	
 	func initialViewController() {
 		if let navigationController = navigationController  {
 			guard let mainVC = builder?.createMain(router: self) else {
@@ -35,7 +35,7 @@ class Router: RouterProtocol {
 			navigationController.viewControllers = [mainVC]
 		}
 	}
-
+	
 	func popUViewController(message: String) {
 		if let navigationController = navigationController  {
 			guard let popupVC = builder?.createPopUp(router: self, message: message) else {

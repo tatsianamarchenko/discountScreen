@@ -10,7 +10,7 @@ import UIKit
 
 class TimerManager {
 
-	private var timer: Timer?
+	var timer: Timer?
 	private var timerValue: Int
 	private var timerView: TimerView
 
@@ -40,7 +40,9 @@ class TimerManager {
 	}
 
 	func runTimer() {
-		timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
+		//timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
+		NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground(_:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
 	}
 
 	@objc func updateTimer() {
@@ -48,7 +50,7 @@ class TimerManager {
 			timer?.invalidate()
 		} else {
 			timerValue -= 1
-			timeString(time: TimeInterval(timerValue), handler: { [weak self] (days, hours, minutes, seconds) in
+			timeString(time: TimeInterval(timerValue)) { [weak self] (days, hours, minutes, seconds) in
 
 				if self?.timerView.dayLable?.text != days{
 					self?.timerView.dayLable?.wheelAnimation()
@@ -67,18 +69,28 @@ class TimerManager {
 				self?.timerView.hoursLable?.text = hours
 				self?.timerView.minutesLable?.text = minutes
 				self?.timerView.secondsLable?.text = seconds
-			})
+			}
 		}
 	}
 
-	private func timeString(time:TimeInterval, handler: @escaping (String, String, String, String) -> Void) {
+	private func timeString(time: TimeInterval, complition: @escaping (String, String, String, String) -> Void) {
 		let days = Int(time) / 86400
 		let hours = Int(time) / 3600
 		let minutes = Int(time) / 60 % 60
 		let seconds = Int(time) % 60
-		handler(String(format:"%02i", days),
-				String(format:"%02i", hours),
-				String(format:"%02i", minutes),
-				String(format:"%02i", seconds))
+		complition(String(format:"%02i", days),
+				   String(format:"%02i", hours),
+				   String(format:"%02i", minutes),
+				   String(format:"%02i", seconds))
+	}
+
+	@objc private func didEnterBackground(_ notification: NotificationCenter) {
+		timer?.invalidate()
+		print("DidEnterBackground")
+	}
+
+	@objc private func willEnterForeground(_ notification: NotificationCenter) {
+		timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
+		print("WillEnterForeground")
 	}
 }

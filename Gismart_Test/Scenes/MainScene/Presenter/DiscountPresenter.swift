@@ -13,7 +13,7 @@ protocol DiscountPresenterProtocol: AnyObject {
 }
 
 class DiscountPresenter: DiscountPresenterProtocol {
-
+	
 	weak var view: DiscountViewProtocol?
 	var router: RouterProtocol
 	let customAlert: PopupScreenViewProtocol

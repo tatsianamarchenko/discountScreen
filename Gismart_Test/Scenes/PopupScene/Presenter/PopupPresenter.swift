@@ -7,9 +7,6 @@
 
 import Foundation
 
-
-import Foundation
-
 protocol PopupPresenterProtocol: AnyObject {
 	init(view: PopupScreenViewProtocol, router: RouterProtocol)
 }

@@ -9,12 +9,12 @@ import Foundation
 import UIKit
 
 class TimerView: UIView {
-
+	
 	var dayLable: UILabel!
 	var hoursLable: UILabel!
 	var minutesLable: UILabel!
 	var secondsLable: UILabel!
-
+	
 	private var dayView: UIView!
 	private var hoursView: UIView!
 	private var minutesView: UIView!
@@ -22,14 +22,14 @@ class TimerView: UIView {
 	private var firstColon: UIView!
 	private var secondColon: UIView!
 	private var thirdColon: UIView!
-
+	
 	private var compactConstraints: [NSLayoutConstraint] = []
 	private var regularConstraints: [NSLayoutConstraint] = []
 	private var sharedConstraints: [NSLayoutConstraint] = []
-
+	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-
+		
 		dayLable = createLable()
 		hoursLable = createLable()
 		minutesLable = createLable()
@@ -41,7 +41,7 @@ class TimerView: UIView {
 		firstColon = createColonLable()
 		secondColon = createColonLable()
 		thirdColon = createColonLable()
-
+		
 		dayView.addSubview(dayLable)
 		hoursView.addSubview(hoursLable)
 		minutesView.addSubview(minutesLable)
@@ -53,17 +53,17 @@ class TimerView: UIView {
 		addSubview(minutesView)
 		addSubview(thirdColon)
 		addSubview(secondsView)
-
+		
 		setupConstraints()
-
+		
 		NSLayoutConstraint.activate(sharedConstraints)
 		layoutTrait(traitCollection: UIScreen.main.traitCollection)
 	}
-
+	
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-
+	
 	private func createView() -> UIView {
 		let view = UIView()
 		view.translatesAutoresizingMaskIntoConstraints = false
@@ -71,7 +71,7 @@ class TimerView: UIView {
 		view.layer.cornerRadius = 12
 		return view
 	}
-
+	
 	private func createColonLable () -> UILabel {
 		let lable = UILabel()
 		lable.text = ":"
@@ -80,16 +80,16 @@ class TimerView: UIView {
 		lable.translatesAutoresizingMaskIntoConstraints = false
 		return lable
 	}
-
+	
 	private func createLable() -> UILabel {
 		let lable = UILabel()
 		lable.textColor = .white
 		lable.textAlignment = .center
-
+		
 		lable.translatesAutoresizingMaskIntoConstraints = false
 		return lable
 	}
-
+	
 	private func setupConstraints() {
 		sharedConstraints.append(contentsOf: [
 			dayView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 3),
@@ -110,7 +110,7 @@ class TimerView: UIView {
 			thirdColon.leadingAnchor.constraint(equalTo: minutesView.trailingAnchor, constant: 3),
 			secondsView.leadingAnchor.constraint(equalTo: thirdColon.trailingAnchor, constant: 3),
 		])
-
+		
 		regularConstraints.append(contentsOf: [
 			dayView.heightAnchor.constraint(equalToConstant: 57),
 			dayView.widthAnchor.constraint(equalToConstant: 90),
@@ -118,14 +118,14 @@ class TimerView: UIView {
 			hoursView.heightAnchor.constraint(equalToConstant: 57),
 			hoursView.widthAnchor.constraint(equalToConstant: 90),
 			secondColon.heightAnchor.constraint(equalToConstant: 57),
-
+			
 			minutesView.heightAnchor.constraint(equalToConstant: 57),
 			minutesView.widthAnchor.constraint(equalToConstant: 90),
 			thirdColon.heightAnchor.constraint(equalToConstant: 57),
 			secondsView.heightAnchor.constraint(equalToConstant: 57),
 			secondsView.widthAnchor.constraint(equalToConstant: 90)
 		])
-
+		
 		compactConstraints.append(contentsOf: [
 			dayView.heightAnchor.constraint(equalToConstant: 41),
 			dayView.widthAnchor.constraint(equalToConstant: 62.5),
@@ -133,7 +133,7 @@ class TimerView: UIView {
 			hoursView.heightAnchor.constraint(equalToConstant: 41),
 			hoursView.widthAnchor.constraint(equalToConstant: 62.5),
 			secondColon.heightAnchor.constraint(equalToConstant: 41),
-
+			
 			minutesView.heightAnchor.constraint(equalToConstant: 41),
 			minutesView.widthAnchor.constraint(equalToConstant: 62.5),
 			thirdColon.heightAnchor.constraint(equalToConstant: 41),
@@ -141,7 +141,7 @@ class TimerView: UIView {
 			secondsView.widthAnchor.constraint(equalToConstant: 62.5)
 		])
 	}
-
+	
 	private func layoutTrait(traitCollection:UITraitCollection) {
 		if (!sharedConstraints[0].isActive) {
 			NSLayoutConstraint.activate(sharedConstraints)
@@ -158,10 +158,10 @@ class TimerView: UIView {
 			NSLayoutConstraint.activate(regularConstraints)
 		}
 	}
-
+	
 	override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 		super.traitCollectionDidChange(previousTraitCollection)
 		layoutTrait(traitCollection: traitCollection)
 	}
-
+	
 }

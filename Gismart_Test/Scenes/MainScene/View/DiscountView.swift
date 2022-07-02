@@ -31,7 +31,6 @@ class DiscountView: UIViewController, DiscountViewProtocol {
 		lable.font = .systemFont(ofSize: 22, weight: .semibold)
 		lable.translatesAutoresizingMaskIntoConstraints = false
 		lable.textAlignment = .center
-		lable.backgroundColor = .systemMint
 		lable.lineBreakStrategy = .standard
 		lable.lineBreakMode = .byTruncatingHead
 		lable.numberOfLines = 2
@@ -96,8 +95,6 @@ class DiscountView: UIViewController, DiscountViewProtocol {
 	lazy private var privacyButton = createButtomButtons(text: "Privacy")
 	lazy private var restoreButton = createButtomButtons(text: "Restore")
 	lazy private var termsButton = createButtomButtons(text: "Terms")
-
-	//let customAlert = OfferActivatedView()
 
 	private var compactConstraints: [NSLayoutConstraint] = []
 	private var regularConstraints: [NSLayoutConstraint] = []
@@ -168,7 +165,7 @@ class DiscountView: UIViewController, DiscountViewProtocol {
 				numberOfSongsLable.topAnchor.constraint(equalTo: timer.bottomAnchor, constant: 10),
 
 				activateButton.topAnchor.constraint(equalTo: numberOfSongsLable.bottomAnchor, constant: 10),
-				activateButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10), //
+				activateButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
 				activateButton.heightAnchor.constraint(equalToConstant: 50),
 				activateButton.widthAnchor.constraint(equalToConstant: 280),
 
@@ -205,7 +202,7 @@ class DiscountView: UIViewController, DiscountViewProtocol {
 				numberOfSongsLable.topAnchor.constraint(equalTo: timer.bottomAnchor, constant: 16),
 
 				activateButton.topAnchor.constraint(equalTo: numberOfSongsLable.bottomAnchor, constant: 10),
-				activateButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20), //
+				activateButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
 				activateButton.heightAnchor.constraint(equalToConstant: 63),
 				activateButton.widthAnchor.constraint(equalToConstant: 300),
 
@@ -274,15 +271,9 @@ class DiscountView: UIViewController, DiscountViewProtocol {
 		presenter?.showActivationTime()
 	}
 
-//	@objc func tapped() {
-//		customAlert.dismissAlert()
-//	}
-
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-//		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
-//		customAlert.backgroundView.addGestureRecognizer(tapGesture)
 		timer.translatesAutoresizingMaskIntoConstraints = false
 		view.backgroundColor = .black
 
