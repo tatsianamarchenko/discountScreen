@@ -19,9 +19,9 @@ class TimerView: UIView {
 	private var hoursView: UIView!
 	private var minutesView: UIView!
 	private var secondsView: UIView!
-	private var firstColon: UIView!
-	private var secondColon: UIView!
-	private var thirdColon: UIView!
+	private var firstColon: UILabel!
+	private var secondColon: UILabel!
+	private var thirdColon: UILabel!
 	
 	private var compactConstraints: [NSLayoutConstraint] = []
 	private var regularConstraints: [NSLayoutConstraint] = []
@@ -38,9 +38,12 @@ class TimerView: UIView {
 		hoursView = createView()
 		minutesView = createView()
 		secondsView = createView()
-		firstColon = createColonLable()
-		secondColon = createColonLable()
-		thirdColon = createColonLable()
+		firstColon = createLable()
+		secondColon = createLable()
+		thirdColon = createLable()
+		firstColon.text = ":"
+		secondColon.text = ":"
+		thirdColon.text = ":"
 		
 		dayView.addSubview(dayLable)
 		hoursView.addSubview(hoursLable)
@@ -72,27 +75,36 @@ class TimerView: UIView {
 		return view
 	}
 	
-	private func createColonLable () -> UILabel {
-		let lable = UILabel()
-		lable.text = ":"
-		lable.textColor = .white
-		lable.textAlignment = .center
-		lable.translatesAutoresizingMaskIntoConstraints = false
-		return lable
-	}
-	
 	private func createLable() -> UILabel {
 		let lable = UILabel()
 		lable.textColor = .white
 		lable.textAlignment = .center
-		
+		lable.font = .systemFont(ofSize: 15, weight: .bold)
 		lable.translatesAutoresizingMaskIntoConstraints = false
 		return lable
 	}
-	
+
 	private func setupConstraints() {
+
+		switch UIDevice.current.name {
+		case Devices.iPhoneSE1.rawValue:
+			compactConstraints.append(contentsOf: [
+				dayView.widthAnchor.constraint(equalToConstant: Constants.share.timerWidthIPhoneSE1),
+				hoursView.widthAnchor.constraint(equalToConstant: Constants.share.timerWidthIPhoneSE1),
+				minutesView.widthAnchor.constraint(equalToConstant: Constants.share.timerWidthIPhoneSE1),
+				secondsView.widthAnchor.constraint(equalToConstant: Constants.share.timerWidthIPhoneSE1)
+			])
+		default:
+			compactConstraints.append(contentsOf: [
+				dayView.widthAnchor.constraint(equalToConstant: Constants.share.timerWidthIPhone),
+				hoursView.widthAnchor.constraint(equalToConstant: Constants.share.timerWidthIPhone),
+				minutesView.widthAnchor.constraint(equalToConstant: Constants.share.timerWidthIPhone),
+				secondsView.widthAnchor.constraint(equalToConstant: Constants.share.timerWidthIPhone)
+			])
+		}
+
 		sharedConstraints.append(contentsOf: [
-			dayView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 3),
+			dayView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.share.timerColonSpaceWidth),
 			dayLable.centerXAnchor.constraint(equalTo: dayView.centerXAnchor),
 			dayLable.centerYAnchor.constraint(equalTo: dayView.centerYAnchor),
 			hoursLable.centerXAnchor.constraint(equalTo: hoursView.centerXAnchor),
@@ -101,44 +113,40 @@ class TimerView: UIView {
 			minutesLable.centerYAnchor.constraint(equalTo: minutesView.centerYAnchor),
 			secondsLable.centerXAnchor.constraint(equalTo: secondsView.centerXAnchor),
 			secondsLable.centerYAnchor.constraint(equalTo: secondsView.centerYAnchor),
-			firstColon.leadingAnchor.constraint(equalTo: dayView.trailingAnchor, constant: 3),
-			firstColon.widthAnchor.constraint(equalToConstant: 3),
-			hoursView.leadingAnchor.constraint(equalTo: firstColon.trailingAnchor, constant: 3),
-			secondColon.leadingAnchor.constraint(equalTo: hoursView.trailingAnchor, constant: 3),
-			secondColon.widthAnchor.constraint(equalToConstant: 3),
-			minutesView.leadingAnchor.constraint(equalTo: secondColon.trailingAnchor, constant: 3),
-			thirdColon.leadingAnchor.constraint(equalTo: minutesView.trailingAnchor, constant: 3),
-			secondsView.leadingAnchor.constraint(equalTo: thirdColon.trailingAnchor, constant: 3),
+			firstColon.leadingAnchor.constraint(equalTo: dayView.trailingAnchor, constant: Constants.share.timerColonSpaceWidth),
+			firstColon.widthAnchor.constraint(equalToConstant: Constants.share.timerColonSpaceWidth),
+			hoursView.leadingAnchor.constraint(equalTo: firstColon.trailingAnchor, constant: Constants.share.timerColonSpaceWidth),
+			secondColon.leadingAnchor.constraint(equalTo: hoursView.trailingAnchor, constant: Constants.share.timerColonSpaceWidth),
+			secondColon.widthAnchor.constraint(equalToConstant: Constants.share.timerColonSpaceWidth),
+			minutesView.leadingAnchor.constraint(equalTo: secondColon.trailingAnchor, constant: Constants.share.timerColonSpaceWidth),
+			thirdColon.leadingAnchor.constraint(equalTo: minutesView.trailingAnchor, constant: Constants.share.timerColonSpaceWidth),
+			secondsView.leadingAnchor.constraint(equalTo: thirdColon.trailingAnchor, constant: Constants.share.timerColonSpaceWidth),
 		])
 		
 		regularConstraints.append(contentsOf: [
-			dayView.heightAnchor.constraint(equalToConstant: 57),
-			dayView.widthAnchor.constraint(equalToConstant: 90),
-			firstColon.heightAnchor.constraint(equalToConstant: 57),
-			hoursView.heightAnchor.constraint(equalToConstant: 57),
-			hoursView.widthAnchor.constraint(equalToConstant: 90),
-			secondColon.heightAnchor.constraint(equalToConstant: 57),
+			dayView.heightAnchor.constraint(equalToConstant: Constants.share.timerHeightIPad),
+			dayView.widthAnchor.constraint(equalToConstant: Constants.share.timerWidthIPad),
+			firstColon.heightAnchor.constraint(equalToConstant: Constants.share.timerHeightIPad),
+			hoursView.heightAnchor.constraint(equalToConstant: Constants.share.timerHeightIPad),
+			hoursView.widthAnchor.constraint(equalToConstant: Constants.share.timerWidthIPad),
+			secondColon.heightAnchor.constraint(equalToConstant: Constants.share.timerHeightIPad),
 			
-			minutesView.heightAnchor.constraint(equalToConstant: 57),
-			minutesView.widthAnchor.constraint(equalToConstant: 90),
-			thirdColon.heightAnchor.constraint(equalToConstant: 57),
-			secondsView.heightAnchor.constraint(equalToConstant: 57),
-			secondsView.widthAnchor.constraint(equalToConstant: 90)
+			minutesView.heightAnchor.constraint(equalToConstant: Constants.share.timerHeightIPad),
+			minutesView.widthAnchor.constraint(equalToConstant: Constants.share.timerWidthIPad),
+			thirdColon.heightAnchor.constraint(equalToConstant: Constants.share.timerHeightIPad),
+			secondsView.heightAnchor.constraint(equalToConstant: Constants.share.timerHeightIPad),
+			secondsView.widthAnchor.constraint(equalToConstant: Constants.share.timerWidthIPad)
 		])
 		
 		compactConstraints.append(contentsOf: [
-			dayView.heightAnchor.constraint(equalToConstant: 41),
-			dayView.widthAnchor.constraint(equalToConstant: 62.5),
-			firstColon.heightAnchor.constraint(equalToConstant: 41),
-			hoursView.heightAnchor.constraint(equalToConstant: 41),
-			hoursView.widthAnchor.constraint(equalToConstant: 62.5),
-			secondColon.heightAnchor.constraint(equalToConstant: 41),
+			dayView.heightAnchor.constraint(equalToConstant: Constants.share.timerHeightIPhone),
+			firstColon.heightAnchor.constraint(equalToConstant: Constants.share.timerHeightIPhone),
+			hoursView.heightAnchor.constraint(equalToConstant: Constants.share.timerHeightIPhone),
+			secondColon.heightAnchor.constraint(equalToConstant: Constants.share.timerHeightIPhone),
 			
-			minutesView.heightAnchor.constraint(equalToConstant: 41),
-			minutesView.widthAnchor.constraint(equalToConstant: 62.5),
-			thirdColon.heightAnchor.constraint(equalToConstant: 41),
-			secondsView.heightAnchor.constraint(equalToConstant: 41),
-			secondsView.widthAnchor.constraint(equalToConstant: 62.5)
+			minutesView.heightAnchor.constraint(equalToConstant: Constants.share.timerHeightIPhone),
+			thirdColon.heightAnchor.constraint(equalToConstant: Constants.share.timerHeightIPhone),
+			secondsView.heightAnchor.constraint(equalToConstant: Constants.share.timerHeightIPhone),
 		])
 	}
 	
@@ -155,8 +163,19 @@ class TimerView: UIView {
 			if compactConstraints.count > 0 && compactConstraints[0].isActive {
 				NSLayoutConstraint.deactivate(compactConstraints)
 			}
+			setFontsForIpad()
 			NSLayoutConstraint.activate(regularConstraints)
 		}
+	}
+
+	private func setFontsForIpad() {
+		dayLable.font = .systemFont(ofSize: 20, weight: .bold)
+		hoursLable.font = .systemFont(ofSize: 20, weight: .bold)
+		minutesLable.font = .systemFont(ofSize: 20, weight: .bold)
+		secondsLable.font = .systemFont(ofSize: 20, weight: .bold)
+		firstColon.font = .systemFont(ofSize: 20, weight: .bold)
+		secondColon.font = .systemFont(ofSize: 20, weight: .bold)
+		thirdColon.font = .systemFont(ofSize: 20, weight: .bold)
 	}
 	
 	override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

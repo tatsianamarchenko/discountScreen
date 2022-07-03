@@ -12,7 +12,7 @@ class TimerManager {
 
 	var timer: Timer?
 	private var timerValue: Int
-	private var timerView: TimerView
+	weak private var timerView: TimerView?
 
 	init(timerValue: Int, timerView: TimerView) {
 		self.timerValue = timerValue
@@ -40,35 +40,34 @@ class TimerManager {
 	}
 
 	func runTimer() {
-		//timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
 		NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground(_:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
 	}
 
-	@objc func updateTimer() {
+	@objc private func updateTimer() {
 		if timerValue < 1 {
 			timer?.invalidate()
 		} else {
 			timerValue -= 1
 			timeString(time: TimeInterval(timerValue)) { [weak self] (days, hours, minutes, seconds) in
 
-				if self?.timerView.dayLable?.text != days{
-					self?.timerView.dayLable?.wheelAnimation()
+				if self?.timerView?.dayLable?.text != days{
+					self?.timerView?.dayLable?.wheelAnimation()
 				}
-				if self?.timerView.hoursLable?.text != hours{
-					self?.timerView.hoursLable?.wheelAnimation()
+				if self?.timerView?.hoursLable?.text != hours{
+					self?.timerView?.hoursLable?.wheelAnimation()
 				}
-				if self?.timerView.minutesLable?.text != minutes{
-					self?.timerView.minutesLable?.wheelAnimation()
+				if self?.timerView?.minutesLable?.text != minutes{
+					self?.timerView?.minutesLable?.wheelAnimation()
 				}
-				if self?.timerView.secondsLable?.text != seconds{
-					self?.timerView.secondsLable?.wheelAnimation()
+				if self?.timerView?.secondsLable?.text != seconds{
+					self?.timerView?.secondsLable?.wheelAnimation()
 				}
 
-				self?.timerView.dayLable?.text = days
-				self?.timerView.hoursLable?.text = hours
-				self?.timerView.minutesLable?.text = minutes
-				self?.timerView.secondsLable?.text = seconds
+				self?.timerView?.dayLable?.text = days
+				self?.timerView?.hoursLable?.text = hours
+				self?.timerView?.minutesLable?.text = minutes
+				self?.timerView?.secondsLable?.text = seconds
 			}
 		}
 	}
@@ -86,11 +85,9 @@ class TimerManager {
 
 	@objc private func didEnterBackground(_ notification: NotificationCenter) {
 		timer?.invalidate()
-		print("DidEnterBackground")
 	}
 
 	@objc private func willEnterForeground(_ notification: NotificationCenter) {
 		timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
-		print("WillEnterForeground")
 	}
 }

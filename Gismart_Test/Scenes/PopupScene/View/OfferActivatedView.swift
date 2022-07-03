@@ -13,7 +13,7 @@ protocol PopupScreenViewProtocol: UIViewController {
 
 class PopupScreenView: UIViewController, PopupScreenViewProtocol {
 	var presenter: PopupPresenterProtocol?
-	var backgroundView: UIView = {
+	private var backgroundView: UIView = {
 		var backgroundView = UIView()
 		backgroundView.backgroundColor = .black
 		backgroundView.translatesAutoresizingMaskIntoConstraints = false
@@ -26,22 +26,22 @@ class PopupScreenView: UIViewController, PopupScreenViewProtocol {
 		alert.backgroundColor = #colorLiteral(red: 0.002419039607, green: 0.05299315602, blue: 0.3073753715, alpha: 1)
 		alert.translatesAutoresizingMaskIntoConstraints = false
 		alert.layer.masksToBounds = true
-		alert.layer.cornerRadius = 12
+		alert.layer.cornerRadius = 16
 		return alert
 	}()
 	
-	var titleLable: UILabel = {
+	private var titleLable: UILabel = {
 		let lable = UILabel()
 		lable.textColor = .white
-		lable.text = "Great"
+		lable.text = "Great!"
 		lable.textAlignment = .center
 		lable.translatesAutoresizingMaskIntoConstraints = false
 		lable.font = .systemFont(ofSize: 35, weight: .bold)
-		lable.createShadow(shadowBlurRadius: 20, shadowColor: .blue)
+		lable.createShadow(shadowBlurRadius: 25, shadowColor: .blue)
 		return lable
 	}()
 	
-	var messageLable: UILabel = {
+	private var messageLable: UILabel = {
 		let lable = UILabel()
 		lable.numberOfLines = 0
 		lable.textColor = .white
@@ -50,6 +50,17 @@ class PopupScreenView: UIViewController, PopupScreenViewProtocol {
 		lable.textAlignment = .center
 		return lable
 	}()
+
+	private func layoutTrait(traitCollection:UITraitCollection) {
+		if traitCollection.horizontalSizeClass == .regular || traitCollection.verticalSizeClass == .regular {
+			titleLable.font = .systemFont(ofSize: 45, weight: .bold)
+			messageLable.font = .systemFont(ofSize: 25, weight: .semibold)
+		}
+	}
+
+	func setMessage(message: String) {
+		messageLable.text = message
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -63,19 +74,24 @@ class PopupScreenView: UIViewController, PopupScreenViewProtocol {
 			backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 			backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
 			backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-			
-			alertView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:view.frame.size.width/3),
-			alertView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.size.height/3),
+
+			alertView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+			alertView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 			alertView.widthAnchor.constraint(equalToConstant: view.frame.size.width/3),
 			alertView.heightAnchor.constraint(equalToConstant: view.frame.size.height/3),
 			
 			titleLable.leadingAnchor.constraint(equalTo: alertView.leadingAnchor),
 			titleLable.trailingAnchor.constraint(equalTo: alertView.trailingAnchor),
-			titleLable.bottomAnchor.constraint(equalTo: alertView.centerYAnchor, constant: -10),
+			titleLable.bottomAnchor.constraint(equalTo: alertView.centerYAnchor, constant: -5),
 			
-			messageLable.leadingAnchor.constraint(equalTo: alertView.leadingAnchor),
-			messageLable.trailingAnchor.constraint(equalTo: alertView.trailingAnchor),
-			messageLable.topAnchor.constraint(equalTo: titleLable.bottomAnchor, constant: 15)
+			messageLable.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 5),
+			messageLable.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -5),
+			messageLable.topAnchor.constraint(equalTo: titleLable.bottomAnchor, constant: 5)
 		])
+	}
+
+	override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+		super.traitCollectionDidChange(previousTraitCollection)
+		layoutTrait(traitCollection: traitCollection)
 	}
 }

@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BFA798272871EF4800834DC3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA798262871EF4800834DC3 /* Constants.swift */; };
 		BFACF647286CF8CD0052352A /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACF646286CF8CD0052352A /* TimerView.swift */; };
 		BFACF649286DC63B0052352A /* OfferActivatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACF648286DC63B0052352A /* OfferActivatedView.swift */; };
 		BFACF64C286DD18E0052352A /* LabelExtansions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACF64B286DD18E0052352A /* LabelExtansions.swift */; };
 		BFACF64E286DD9980052352A /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACF64D286DD9980052352A /* TimerManager.swift */; };
 		BFB11B81287053AC00E73319 /* DevicesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB11B80287053AC00E73319 /* DevicesList.swift */; };
-		BFBFE5FB286F9FF500CC8EAB /* ButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBFE5FA286F9FF500CC8EAB /* ButtonExtensions.swift */; };
+		BFBFE5FB286F9FF500CC8EAB /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBFE5FA286F9FF500CC8EAB /* GradientButton.swift */; };
 		BFC2D0032870800B00775699 /* DiscountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC2D0022870800B00775699 /* DiscountPresenter.swift */; };
 		BFC2D006287080F200775699 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC2D004287080F200775699 /* ModuleBuilder.swift */; };
 		BFC2D007287080F200775699 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC2D005287080F200775699 /* Router.swift */; };
@@ -25,12 +26,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BFA798262871EF4800834DC3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BFACF646286CF8CD0052352A /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		BFACF648286DC63B0052352A /* OfferActivatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferActivatedView.swift; sourceTree = "<group>"; };
 		BFACF64B286DD18E0052352A /* LabelExtansions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtansions.swift; sourceTree = "<group>"; };
 		BFACF64D286DD9980052352A /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		BFB11B80287053AC00E73319 /* DevicesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesList.swift; sourceTree = "<group>"; };
-		BFBFE5FA286F9FF500CC8EAB /* ButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtensions.swift; sourceTree = "<group>"; };
+		BFBFE5FA286F9FF500CC8EAB /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		BFC2D0022870800B00775699 /* DiscountPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscountPresenter.swift; sourceTree = "<group>"; };
 		BFC2D004287080F200775699 /* ModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		BFC2D005287080F200775699 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				BFC9565E286CC01C002A5827 /* AppDelegate.swift */,
 				BFC95660286CC01C002A5827 /* SceneDelegate.swift */,
 				BFB11B80287053AC00E73319 /* DevicesList.swift */,
+				BFA798262871EF4800834DC3 /* Constants.swift */,
 				BFC95667286CC021002A5827 /* Assets.xcassets */,
 				BFC95669286CC021002A5827 /* LaunchScreen.storyboard */,
 				BFC9566C286CC021002A5827 /* Info.plist */,
@@ -108,7 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				BFACF64B286DD18E0052352A /* LabelExtansions.swift */,
-				BFBFE5FA286F9FF500CC8EAB /* ButtonExtensions.swift */,
+				BFBFE5FA286F9FF500CC8EAB /* GradientButton.swift */,
 			);
 			path = UIExtensions;
 			sourceTree = "<group>";
@@ -254,7 +257,8 @@
 				BFACF64C286DD18E0052352A /* LabelExtansions.swift in Sources */,
 				BFB11B81287053AC00E73319 /* DevicesList.swift in Sources */,
 				BFC2D0032870800B00775699 /* DiscountPresenter.swift in Sources */,
-				BFBFE5FB286F9FF500CC8EAB /* ButtonExtensions.swift in Sources */,
+				BFBFE5FB286F9FF500CC8EAB /* GradientButton.swift in Sources */,
+				BFA798272871EF4800834DC3 /* Constants.swift in Sources */,
 				BFACF64E286DD9980052352A /* TimerManager.swift in Sources */,
 				BFACF647286CF8CD0052352A /* TimerView.swift in Sources */,
 			);

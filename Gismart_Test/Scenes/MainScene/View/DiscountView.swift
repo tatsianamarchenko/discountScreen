@@ -24,7 +24,7 @@ class DiscountView: UIViewController, DiscountViewProtocol {
 		return imageView
 	}()
 
-	lazy private var saleTitleLable: UILabel = {
+	lazy private var offerTitleLable: UILabel = {
 		var lable = UILabel()
 		lable.text = "LAST-MINUTE CHANCE! to claim your offer"
 		lable.textColor = .white
@@ -37,7 +37,7 @@ class DiscountView: UIViewController, DiscountViewProtocol {
 		return lable
 	}()
 
-	lazy private var salePercentLable: UILabel = {
+	lazy private var offerPercentLable: UILabel = {
 		var lable = UILabel()
 		lable.text = "90% OFF"
 		lable.textColor = .white
@@ -70,16 +70,16 @@ class DiscountView: UIViewController, DiscountViewProtocol {
 		return lable
 	}()
 
-	lazy private var activateButton: UIButton = {
-		var button = ActualGradientButton()
+	lazy private var activationButton: UIButton = {
+		var button = GradientButton()
 		button.setTitle("ACTIVATE OFFER", for: .normal)
 		button.titleLabel?.font = .systemFont(ofSize: 15, weight: .semibold)
 		button.addTarget(self, action: #selector(showPopupScreen), for: .touchUpInside)
 		button.translatesAutoresizingMaskIntoConstraints = false
 		button.layer.cornerRadius = 12
-		button.layer.shadowColor = UIColor.systemPink.cgColor
-		button.layer.shadowRadius = 30
-		button.layer.shadowOpacity = 0.8
+		button.layer.shadowColor = UIColor.systemPurple.cgColor
+		button.layer.shadowRadius = 20
+		button.layer.shadowOpacity = 0.9
 		button.layer.masksToBounds = false
 		return button
 	}()
@@ -110,11 +110,11 @@ class DiscountView: UIViewController, DiscountViewProtocol {
 	}
 
 	private func setFonts() {
-		saleTitleLable.font = .systemFont(ofSize: 35, weight: .semibold)
-		salePercentLable.font = .systemFont(ofSize: 80, weight: .black)
+		offerTitleLable.font = .systemFont(ofSize: 35, weight: .semibold)
+		offerPercentLable.font = .systemFont(ofSize: 80, weight: .black)
 		forLable.font = .systemFont(ofSize: 20, weight: .semibold)
 		numberOfSongsLable.font = .systemFont(ofSize: 18, weight: .regular)
-		activateButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
+		activationButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
 		privacyButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .regular)
 		restoreButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .regular)
 		termsButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .regular)
@@ -141,76 +141,85 @@ class DiscountView: UIViewController, DiscountViewProtocol {
 
 	private func setupConstraints() {
 		switch UIDevice.current.name {
+		case Devices.iPadPro5thGen.rawValue:
+			regularConstraints.append(contentsOf: [
+				offerTitleLable.topAnchor.constraint(equalTo: view.topAnchor, constant: 250)
+				])
 		case Devices.iPhoneSE1.rawValue:
 			compactConstraints.append(contentsOf: [
-				saleTitleLable.topAnchor.constraint(equalTo: view.topAnchor),
-				salePercentLable.leadingAnchor.constraint(equalTo: saleTitleLable.leadingAnchor),
-				salePercentLable.trailingAnchor.constraint(equalTo: saleTitleLable.trailingAnchor),
-				forLable.leadingAnchor.constraint(equalTo: saleTitleLable.leadingAnchor),
-				forLable.trailingAnchor.constraint(equalTo: saleTitleLable.trailingAnchor),
-				timer.heightAnchor.constraint(equalToConstant: 41),
-				numberOfSongsLable.leadingAnchor.constraint(equalTo: activateButton.leadingAnchor),
-				numberOfSongsLable.trailingAnchor.constraint(equalTo: activateButton.trailingAnchor),
+				offerTitleLable.topAnchor.constraint(equalTo: view.topAnchor),
+				offerPercentLable.leadingAnchor.constraint(equalTo: activationButton.leadingAnchor),
+				offerPercentLable.trailingAnchor.constraint(equalTo: activationButton.trailingAnchor),
+				forLable.leadingAnchor.constraint(equalTo: activationButton.leadingAnchor),
+				forLable.trailingAnchor.constraint(equalTo: activationButton.trailingAnchor),
+				timer.heightAnchor.constraint(equalToConstant: Constants.share.timerHeightIPhone),
+				numberOfSongsLable.leadingAnchor.constraint(equalTo: activationButton.leadingAnchor),
+				numberOfSongsLable.trailingAnchor.constraint(equalTo: activationButton.trailingAnchor),
 
-				saleTitleLable.leadingAnchor.constraint(equalTo: activateButton.leadingAnchor, constant: 20),
-				saleTitleLable.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+				offerTitleLable.leadingAnchor.constraint(equalTo: activationButton.leadingAnchor, constant: 10),
+				offerTitleLable.trailingAnchor.constraint(equalTo: activationButton.trailingAnchor, constant: -10),
 
-				salePercentLable.topAnchor.constraint(equalTo: saleTitleLable.bottomAnchor, constant: 10),
+				offerPercentLable.topAnchor.constraint(equalTo: offerTitleLable.bottomAnchor, constant: 10),
 
-				forLable.topAnchor.constraint(equalTo: salePercentLable.bottomAnchor, constant: 6),
+				forLable.topAnchor.constraint(equalTo: offerPercentLable.bottomAnchor, constant: 6),
 
 				timer.topAnchor.constraint(equalTo: forLable.bottomAnchor, constant: 10),
-				timer.leadingAnchor.constraint(equalTo: activateButton.leadingAnchor),
+				timer.leadingAnchor.constraint(equalTo: activationButton.leadingAnchor),
 
 				numberOfSongsLable.topAnchor.constraint(equalTo: timer.bottomAnchor, constant: 10),
 
-				activateButton.topAnchor.constraint(equalTo: numberOfSongsLable.bottomAnchor, constant: 10),
-				activateButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
-				activateButton.heightAnchor.constraint(equalToConstant: 50),
-				activateButton.widthAnchor.constraint(equalToConstant: 280),
+				activationButton.topAnchor.constraint(equalTo: numberOfSongsLable.bottomAnchor, constant: 10),
+				activationButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
+				activationButton.heightAnchor.constraint(equalToConstant: Constants.share.activationButtonHeightIPhoneSE1),
+				activationButton.widthAnchor.constraint(equalToConstant: Constants.share.activationButtonWidthIPhoneSE1),
 
 				privacyButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
 				privacyButton.trailingAnchor.constraint(equalTo: restoreButton.leadingAnchor, constant: -10),
 
 				restoreButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-				restoreButton.centerXAnchor.constraint(equalTo: activateButton.centerXAnchor),
+				restoreButton.centerXAnchor.constraint(equalTo: activationButton.centerXAnchor),
 
 				termsButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
 				termsButton.leadingAnchor.constraint(equalTo: restoreButton.trailingAnchor, constant: 10)
 			])
 		default:
+
+			regularConstraints.append(contentsOf: [
+				offerTitleLable.topAnchor.constraint(equalTo: view.topAnchor, constant: 150)
+				])
+
 			compactConstraints.append(contentsOf: [
-				saleTitleLable.topAnchor.constraint(equalTo: view.topAnchor),
-				salePercentLable.leadingAnchor.constraint(equalTo: saleTitleLable.leadingAnchor),
-				salePercentLable.trailingAnchor.constraint(equalTo: saleTitleLable.trailingAnchor),
-				forLable.leadingAnchor.constraint(equalTo: saleTitleLable.leadingAnchor),
-				forLable.trailingAnchor.constraint(equalTo: saleTitleLable.trailingAnchor),
-				timer.heightAnchor.constraint(equalToConstant: 41),
-				numberOfSongsLable.leadingAnchor.constraint(equalTo: activateButton.leadingAnchor),
-				numberOfSongsLable.trailingAnchor.constraint(equalTo: activateButton.trailingAnchor),
+				offerTitleLable.topAnchor.constraint(equalTo: view.topAnchor),
+				offerPercentLable.leadingAnchor.constraint(equalTo: activationButton.leadingAnchor),
+				offerPercentLable.trailingAnchor.constraint(equalTo: activationButton.trailingAnchor),
+				forLable.leadingAnchor.constraint(equalTo: activationButton.leadingAnchor),
+				forLable.trailingAnchor.constraint(equalTo: activationButton.trailingAnchor),
+				timer.heightAnchor.constraint(equalToConstant: Constants.share.timerHeightIPhone),
+				numberOfSongsLable.leadingAnchor.constraint(equalTo: activationButton.leadingAnchor),
+				numberOfSongsLable.trailingAnchor.constraint(equalTo: activationButton.trailingAnchor),
 
-				saleTitleLable.leadingAnchor.constraint(equalTo: activateButton.leadingAnchor, constant: 30),
-				saleTitleLable.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+				offerTitleLable.leadingAnchor.constraint(equalTo: activationButton.leadingAnchor, constant: 20),
+				offerTitleLable.trailingAnchor.constraint(equalTo: activationButton.trailingAnchor, constant: -20),
 
-				salePercentLable.topAnchor.constraint(equalTo: saleTitleLable.bottomAnchor, constant: 12),
+				offerPercentLable.topAnchor.constraint(equalTo: offerTitleLable.bottomAnchor, constant: 12),
 
-				forLable.topAnchor.constraint(equalTo: salePercentLable.bottomAnchor, constant: 8),
+				forLable.topAnchor.constraint(equalTo: offerPercentLable.bottomAnchor, constant: 8),
 
 				timer.topAnchor.constraint(equalTo: forLable.bottomAnchor, constant: 20),
-				timer.leadingAnchor.constraint(equalTo: activateButton.leadingAnchor, constant: 10),
+				timer.leadingAnchor.constraint(equalTo: activationButton.leadingAnchor),
 
 				numberOfSongsLable.topAnchor.constraint(equalTo: timer.bottomAnchor, constant: 16),
 
-				activateButton.topAnchor.constraint(equalTo: numberOfSongsLable.bottomAnchor, constant: 10),
-				activateButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-				activateButton.heightAnchor.constraint(equalToConstant: 63),
-				activateButton.widthAnchor.constraint(equalToConstant: 300),
+				activationButton.topAnchor.constraint(equalTo: numberOfSongsLable.bottomAnchor, constant: 10),
+				activationButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+				activationButton.heightAnchor.constraint(equalToConstant: Constants.share.activationButtonHeightIPhone),
+				activationButton.widthAnchor.constraint(equalToConstant: Constants.share.activationButtonWidthIPhone),
 
 				privacyButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
 				privacyButton.trailingAnchor.constraint(equalTo: restoreButton.leadingAnchor, constant: -10),
 
 				restoreButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
-				restoreButton.centerXAnchor.constraint(equalTo: activateButton.centerXAnchor),
+				restoreButton.centerXAnchor.constraint(equalTo: activationButton.centerXAnchor),
 
 				termsButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
 				termsButton.leadingAnchor.constraint(equalTo: restoreButton.trailingAnchor, constant: 10)
@@ -231,38 +240,37 @@ class DiscountView: UIViewController, DiscountViewProtocol {
 		])
 
 		regularConstraints.append(contentsOf: [
-			saleTitleLable.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
-			saleTitleLable.leadingAnchor.constraint(equalTo: activateButton.leadingAnchor),
-			saleTitleLable.trailingAnchor.constraint(equalTo: activateButton.trailingAnchor),
+			offerTitleLable.leadingAnchor.constraint(equalTo: activationButton.leadingAnchor),
+			offerTitleLable.trailingAnchor.constraint(equalTo: activationButton.trailingAnchor),
 
-			salePercentLable.topAnchor.constraint(equalTo: saleTitleLable.bottomAnchor, constant: 12),
-			salePercentLable.leadingAnchor.constraint(equalTo: activateButton.leadingAnchor),
-			salePercentLable.trailingAnchor.constraint(equalTo: activateButton.trailingAnchor),
+			offerPercentLable.topAnchor.constraint(equalTo: offerTitleLable.bottomAnchor, constant: 12),
+			offerPercentLable.leadingAnchor.constraint(equalTo: activationButton.leadingAnchor),
+			offerPercentLable.trailingAnchor.constraint(equalTo: activationButton.trailingAnchor),
 
-			forLable.topAnchor.constraint(equalTo: salePercentLable.bottomAnchor, constant: 8),
-			forLable.leadingAnchor.constraint(equalTo: activateButton.leadingAnchor),
-			forLable.trailingAnchor.constraint(equalTo: activateButton.trailingAnchor),
+			forLable.topAnchor.constraint(equalTo: offerPercentLable.bottomAnchor, constant: 8),
+			forLable.leadingAnchor.constraint(equalTo: activationButton.leadingAnchor),
+			forLable.trailingAnchor.constraint(equalTo: activationButton.trailingAnchor),
 
 			timer.topAnchor.constraint(equalTo: forLable.bottomAnchor, constant: 20),
-			timer.leadingAnchor.constraint(equalTo: activateButton.leadingAnchor),
-			timer.heightAnchor.constraint(equalToConstant: 60),
+			timer.leadingAnchor.constraint(equalTo: activationButton.leadingAnchor),
+			timer.heightAnchor.constraint(equalToConstant: 57),
 
 			numberOfSongsLable.topAnchor.constraint(equalTo: timer.bottomAnchor, constant: 16),
-			numberOfSongsLable.leadingAnchor.constraint(equalTo: activateButton.leadingAnchor),
-			numberOfSongsLable.trailingAnchor.constraint(equalTo: activateButton.trailingAnchor),
+			numberOfSongsLable.leadingAnchor.constraint(equalTo: activationButton.leadingAnchor),
+			numberOfSongsLable.trailingAnchor.constraint(equalTo: activationButton.trailingAnchor),
 
-			activateButton.topAnchor.constraint(equalTo: numberOfSongsLable.bottomAnchor, constant: 30),
-			activateButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -95),
-			activateButton.heightAnchor.constraint(equalToConstant: 88),
-			activateButton.widthAnchor.constraint(equalToConstant: 403),
+			activationButton.topAnchor.constraint(equalTo: numberOfSongsLable.bottomAnchor, constant: 30),
+			activationButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -95),
+			activationButton.heightAnchor.constraint(equalToConstant: Constants.share.activationButtonHeightIPad),
+			activationButton.widthAnchor.constraint(equalToConstant: Constants.share.activationButtonWidthIPad),
 
-			privacyButton.topAnchor.constraint(equalTo: activateButton.bottomAnchor, constant: 20),
+			privacyButton.topAnchor.constraint(equalTo: activationButton.bottomAnchor, constant: 20),
 			privacyButton.trailingAnchor.constraint(equalTo: restoreButton.leadingAnchor, constant: -10),
 
-			restoreButton.topAnchor.constraint(equalTo: activateButton.bottomAnchor, constant: 20),
-			restoreButton.centerXAnchor.constraint(equalTo: activateButton.centerXAnchor),
+			restoreButton.topAnchor.constraint(equalTo: activationButton.bottomAnchor, constant: 20),
+			restoreButton.centerXAnchor.constraint(equalTo: activationButton.centerXAnchor),
 
-			termsButton.topAnchor.constraint(equalTo: activateButton.bottomAnchor, constant: 20),
+			termsButton.topAnchor.constraint(equalTo: activationButton.bottomAnchor, constant: 20),
 			termsButton.leadingAnchor.constraint(equalTo: restoreButton.trailingAnchor, constant: 10)
 		])
 	}
@@ -278,11 +286,11 @@ class DiscountView: UIViewController, DiscountViewProtocol {
 		view.backgroundColor = .black
 
 		view.addSubview(musicImage)
-		view.addSubview(saleTitleLable)
-		view.addSubview(salePercentLable)
+		view.addSubview(offerTitleLable)
+		view.addSubview(offerPercentLable)
 		view.addSubview(forLable)
 		view.addSubview(numberOfSongsLable)
-		view.addSubview(activateButton)
+		view.addSubview(activationButton)
 		view.addSubview(privacyButton)
 		view.addSubview(restoreButton)
 		view.addSubview(termsButton)

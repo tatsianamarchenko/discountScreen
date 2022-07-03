@@ -8,7 +8,7 @@
 import Foundation
 
 protocol DiscountPresenterProtocol: AnyObject {
-	init(view: DiscountViewProtocol, router: RouterProtocol, customAlert: PopupScreenViewProtocol, timerManager: TimerManager)
+	init(view: DiscountViewProtocol, router: RouterProtocol, timerManager: TimerManager)
 	func showActivationTime()
 }
 
@@ -16,19 +16,17 @@ class DiscountPresenter: DiscountPresenterProtocol {
 	
 	weak var view: DiscountViewProtocol?
 	var router: RouterProtocol
-	let customAlert: PopupScreenViewProtocol
 	let timerManager: TimerManager
 	
-	required init(view: DiscountViewProtocol, router: RouterProtocol, customAlert: PopupScreenViewProtocol,  timerManager: TimerManager) {
+	required init(view: DiscountViewProtocol, router: RouterProtocol, timerManager: TimerManager) {
 		self.view = view
 		self.router = router
-		self.customAlert = customAlert
 		self.timerManager = timerManager
 	}
 	
 	func showActivationTime() {
 		timerManager.dateToTransfer { [weak self] daysLeft ,houseLeft, minutesLeft, secondsLeft  in
-			self?.router.popUViewController(message: "Offer activated: \(daysLeft)\(houseLeft)\(minutesLeft)\(secondsLeft)")
+			self?.router.popUViewController(message: "Offer activated at \(daysLeft)\(houseLeft)\(minutesLeft)\(secondsLeft)")
 		}
 	}
 }

@@ -41,6 +41,7 @@ class Router: RouterProtocol {
 			guard let popupVC = builder?.createPopUp(router: self, message: message) else {
 				return
 			}
+			navigationController.modalPresentationStyle = .overFullScreen
 			navigationController.present(popupVC, animated: true)
 		}
 	}
