@@ -1,5 +1,5 @@
 //
-//  OfferActivatedViewController.swift
+//  PopupScreenView.swift
 //  Gismart_Test
 //
 //  Created by Tatsiana Marchanka on 30.06.22.
@@ -17,7 +17,7 @@ class PopupScreenView: UIViewController, PopupScreenViewProtocol {
 		var backgroundView = UIView()
 		backgroundView.backgroundColor = .black
 		backgroundView.translatesAutoresizingMaskIntoConstraints = false
-		backgroundView.alpha = 0
+		backgroundView.alpha = 0.8
 		return backgroundView
 	}()
 	
