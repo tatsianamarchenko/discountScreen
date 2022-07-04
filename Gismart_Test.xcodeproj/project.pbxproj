@@ -14,13 +14,9 @@
 		BFACF64E286DD9980052352A /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACF64D286DD9980052352A /* TimerManager.swift */; };
 		BFB11B81287053AC00E73319 /* DevicesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB11B80287053AC00E73319 /* DevicesList.swift */; };
 		BFBFE5FB286F9FF500CC8EAB /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBFE5FA286F9FF500CC8EAB /* GradientButton.swift */; };
-		BFC2D0032870800B00775699 /* DiscountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC2D0022870800B00775699 /* DiscountPresenter.swift */; };
-		BFC2D006287080F200775699 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC2D004287080F200775699 /* ModuleBuilder.swift */; };
-		BFC2D007287080F200775699 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC2D005287080F200775699 /* Router.swift */; };
-		BFC2D00E2870B66700775699 /* PopupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC2D00D2870B66700775699 /* PopupPresenter.swift */; };
 		BFC9565F286CC01C002A5827 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9565E286CC01C002A5827 /* AppDelegate.swift */; };
 		BFC95661286CC01C002A5827 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC95660286CC01C002A5827 /* SceneDelegate.swift */; };
-		BFC95663286CC01C002A5827 /* DiscountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC95662286CC01C002A5827 /* DiscountView.swift */; };
+		BFC95663286CC01C002A5827 /* DiscountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC95662286CC01C002A5827 /* DiscountViewController.swift */; };
 		BFC95668286CC021002A5827 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFC95667286CC021002A5827 /* Assets.xcassets */; };
 		BFC9566B286CC021002A5827 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC95669286CC021002A5827 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -33,14 +29,10 @@
 		BFACF64D286DD9980052352A /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		BFB11B80287053AC00E73319 /* DevicesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesList.swift; sourceTree = "<group>"; };
 		BFBFE5FA286F9FF500CC8EAB /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
-		BFC2D0022870800B00775699 /* DiscountPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscountPresenter.swift; sourceTree = "<group>"; };
-		BFC2D004287080F200775699 /* ModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
-		BFC2D005287080F200775699 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		BFC2D00D2870B66700775699 /* PopupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupPresenter.swift; sourceTree = "<group>"; };
 		BFC9565B286CC01C002A5827 /* Gismart_Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gismart_Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC9565E286CC01C002A5827 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFC95660286CC01C002A5827 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BFC95662286CC01C002A5827 /* DiscountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountView.swift; sourceTree = "<group>"; wrapsLines = 0; };
+		BFC95662286CC01C002A5827 /* DiscountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		BFC95667286CC021002A5827 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFC9566A286CC021002A5827 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFC9566C286CC021002A5827 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,6 +52,7 @@
 		BFACF64A286DD17B0052352A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BFC355262872DEE1007B5957 /* Views */,
 				BFC2D0092870A3AC00775699 /* UIExtensions */,
 				BFC2D0082870A3A000775699 /* Managers */,
 				BFC9565E286CC01C002A5827 /* AppDelegate.swift */,
@@ -71,32 +64,6 @@
 				BFC9566C286CC021002A5827 /* Info.plist */,
 			);
 			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		BFAD9E79286E2C210046B15C /* MainScene */ = {
-			isa = PBXGroup;
-			children = (
-				BFC2D00028707FAF00775699 /* View */,
-				BFC2D0012870800B00775699 /* Presenter */,
-			);
-			path = MainScene;
-			sourceTree = "<group>";
-		};
-		BFC2D00028707FAF00775699 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				BFC95662286CC01C002A5827 /* DiscountView.swift */,
-				BFACF646286CF8CD0052352A /* TimerView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		BFC2D0012870800B00775699 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				BFC2D0022870800B00775699 /* DiscountPresenter.swift */,
-			);
-			path = Presenter;
 			sourceTree = "<group>";
 		};
 		BFC2D0082870A3A000775699 /* Managers */ = {
@@ -116,40 +83,12 @@
 			path = UIExtensions;
 			sourceTree = "<group>";
 		};
-		BFC2D00A2870B56800775699 /* PopupScene */ = {
+		BFC355262872DEE1007B5957 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				BFC2D00C2870B65400775699 /* Presenter */,
-				BFC2D00B2870B57500775699 /* View */,
+				BFACF646286CF8CD0052352A /* TimerView.swift */,
 			);
-			path = PopupScene;
-			sourceTree = "<group>";
-		};
-		BFC2D00B2870B57500775699 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				BFACF648286DC63B0052352A /* OfferActivatedView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		BFC2D00C2870B65400775699 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				BFC2D00D2870B66700775699 /* PopupPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		BFC2D00F2870B9B700775699 /* Scenes */ = {
-			isa = PBXGroup;
-			children = (
-				BFC2D004287080F200775699 /* ModuleBuilder.swift */,
-				BFC2D005287080F200775699 /* Router.swift */,
-				BFC2D00A2870B56800775699 /* PopupScene */,
-				BFAD9E79286E2C210046B15C /* MainScene */,
-			);
-			path = Scenes;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		BFC95652286CC01C002A5827 = {
@@ -171,7 +110,8 @@
 		BFC9565D286CC01C002A5827 /* Gismart_Test */ = {
 			isa = PBXGroup;
 			children = (
-				BFC2D00F2870B9B700775699 /* Scenes */,
+				BFACF648286DC63B0052352A /* OfferActivatedView.swift */,
+				BFC95662286CC01C002A5827 /* DiscountViewController.swift */,
 				BFACF64A286DD17B0052352A /* Supporting Files */,
 			);
 			path = Gismart_Test;
@@ -247,16 +187,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFC95663286CC01C002A5827 /* DiscountView.swift in Sources */,
+				BFC95663286CC01C002A5827 /* DiscountViewController.swift in Sources */,
 				BFC9565F286CC01C002A5827 /* AppDelegate.swift in Sources */,
 				BFC95661286CC01C002A5827 /* SceneDelegate.swift in Sources */,
 				BFACF649286DC63B0052352A /* OfferActivatedView.swift in Sources */,
-				BFC2D00E2870B66700775699 /* PopupPresenter.swift in Sources */,
-				BFC2D007287080F200775699 /* Router.swift in Sources */,
-				BFC2D006287080F200775699 /* ModuleBuilder.swift in Sources */,
 				BFACF64C286DD18E0052352A /* LabelExtansions.swift in Sources */,
 				BFB11B81287053AC00E73319 /* DevicesList.swift in Sources */,
-				BFC2D0032870800B00775699 /* DiscountPresenter.swift in Sources */,
 				BFBFE5FB286F9FF500CC8EAB /* GradientButton.swift in Sources */,
 				BFA798272871EF4800834DC3 /* Constants.swift in Sources */,
 				BFACF64E286DD9980052352A /* TimerManager.swift in Sources */,

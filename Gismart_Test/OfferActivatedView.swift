@@ -1,5 +1,5 @@
 //
-//  PopupScreenView.swift
+//  PopupScreenViewController.swift
 //  Gismart_Test
 //
 //  Created by Tatsiana Marchanka on 30.06.22.
@@ -8,11 +8,7 @@
 import Foundation
 import UIKit
 
-protocol PopupScreenViewProtocol: UIViewController {
-}
-
-class PopupScreenView: UIViewController, PopupScreenViewProtocol {
-	var presenter: PopupPresenterProtocol?
+class PopupScreenViewController: UIViewController {
 	private var backgroundView: UIView = {
 		var backgroundView = UIView()
 		backgroundView.backgroundColor = .black
@@ -61,7 +57,7 @@ class PopupScreenView: UIViewController, PopupScreenViewProtocol {
 	func setMessage(message: String) {
 		messageLable.text = message
 	}
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.addSubview(backgroundView)
